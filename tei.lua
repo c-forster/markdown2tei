@@ -86,9 +86,6 @@ local function pipe(cmd, inp)
   return result
 end
 
--- Table to store footnotes, so they can be included at the end.
-local notes = {}
-
 -- Variables to manage divs created by headers.
 local headerDivDepth = 0
 
@@ -109,13 +106,6 @@ function Doc(body, metadata, variables)
     table.insert(buffer, s)
   end
   add(body)
-  if #notes > 0 then
-    add('<list xml:id="footnotes">')
-    for _,note in pairs(notes) do
-      add(note)
-    end
-    add('</list>')
-  end
   return table.concat(buffer,'\n')
 end
 
@@ -214,16 +204,10 @@ function DisplayMath(s)
   return "\\[" .. escape(s) .. "\\]"
 end
 
+
+--- We handle notes simply, inline. 
 function Note(s)
-  local num = #notes + 1
-  -- insert the back reference right before the final closing tag.
-  s = string.gsub(s,
-          '(.*)</', '%1 <ref target="#fnref' .. num ..  '">&#8617;</ref></')
-  -- add a list item with the note to the note table.
-  table.insert(notes, '<item xml:id="fn' .. num .. '">' .. s .. '</item>')
-  -- return the footnote reference, linked to the note.
-  return '<ref xml:id="fnref' .. num .. '" target="#fn' .. num ..
-     '">' .. Superscript(num) .. '</ref>'
+   return '<note>' .. s .. '</note>'
 end
 
 function Span(s, attr)
