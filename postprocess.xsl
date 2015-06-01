@@ -17,7 +17,6 @@
     </xsl:copy>
   </xsl:template>
 
-
   <!-- This element matches paragraphs followed by a poem and then a 
        noindent div. -->
   <xsl:template match="tei:p[following-sibling::*[1][self::tei:lg[@type='poetry']] and following-sibling::*[2][self::tei:div[@class='noindent']]]">

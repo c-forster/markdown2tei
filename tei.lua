@@ -205,9 +205,15 @@ function DisplayMath(s)
 end
 
 
---- We handle notes simply, inline. 
+--- We handle notes simply, inline. A simple string test here for
+-- the substring 'ED:' let's us create "editorial" notes. Absent 
+-- this, notes as assumed to be authorial.
 function Note(s)
-   return '<note>' .. s .. '</note>'
+   if string.starts(s, 'ED:') then
+      return "<note type='editorial'>" .. s .. "</note>"
+   else 
+      return '<note>' .. s .. '</note>'
+   end
 end
 
 function Span(s, attr)
@@ -215,6 +221,9 @@ function Span(s, attr)
   return "<seg" .. attributes(attr) .. ">" .. s .. "</seg>"
 end
 
+
+-- NOTETOSELF: Not sure where/how this function gets called.
+-- It should probably just be removed.
 function Cite(s, cs)
   local ids = {}
   for _,cit in ipairs(cs) do
