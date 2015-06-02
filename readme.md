@@ -9,11 +9,11 @@ In order to run, this script depends on:
 
 - [pandoc](http://pandoc.org)
 - `sed`
-- `xsltrpoc`
+- `xsltproc`
 
 ## Header Fields
 
-For now, this script recognizes a limited subset of elements for a TEI header. These are all essentailly translated into fields in the `tei-lite.template` file using the pandoc template system. (Linkes below will take one to the documentation for [TEI Lite](http://www.tei-c.org/Guidelines/Customization/Lite/).) The fields currently implemeneted privilege metadata related to document transcription---they provide fields, therefore, for author/title of the electronic file as well as fields for a bibliographic citation of its source, a list of editors, and information about sources.
+For now, this script recognizes a limited subset of elements for a TEI header. These are all essentially translated into fields in the `tei-lite.template` file using the pandoc template system. (Links below will take one to the documentation for [TEI Lite](http://www.tei-c.org/Guidelines/Customization/Lite/).) The fields currently implemented privilege metadata related to document transcription---they provide fields, therefore, for author/title of the electronic file as well as fields for a bibliographic citation of its source, a list of editors, and information about sources.
 
 Currently, it requires only:
 
